@@ -22,7 +22,6 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 80, host: 9998
   config.vm.network "forwarded_port", guest: 8080, host: 9999
     end
-  salt.vm.network "private_network", ip: "192.168.33.9"
 end
 
 end
