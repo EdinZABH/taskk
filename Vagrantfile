@@ -11,17 +11,18 @@ Vagrant.configure("2") do |config|
   salt.install_master = true
   salt.no_minion = false
   salt.run_highstate = true
-  salt.master_config = "/Users/edin/task2/master/master.conf"
-  salt.minion_config = "/Users/edin/task2/minion/minion.conf"
-  salt.master_key = "/Users/edin/task2/pki/master.pem"
-  salt.master_pub = "/Users/edin/task2/pki/master.pub"
-  salt.minion_key = "/Users/edin/task2/pki/minion.pem"
-  salt.minion_pub = "/Users/edin/task2/pki/minion.pub"
-  salt.seed_master = {"salt" => "/Users/edin/task2/pki/minion.pub"}
-  config.vm.synced_folder '/Users/edin/task2/', '/srv/salt'  
+  salt.master_config = "master/master.conf"
+  salt.minion_config = "minion/minion.conf"
+  salt.master_key = "pki/master.pem"
+  salt.master_pub = "pki/master.pub"
+  salt.minion_key = "pki/minion.pem"
+  salt.minion_pub = "pki/minion.pub"
+  salt.seed_master = {"salt" => "pki/minion.pub"}
+  config.vm.synced_folder '.', '/srv/salt'  
   config.vm.network "forwarded_port", guest: 80, host: 9998
   config.vm.network "forwarded_port", guest: 8080, host: 9999
     end
+  salt.vm.network "private_network", ip: "192.168.33.9"
 end
 
 end
